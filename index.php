@@ -8,7 +8,10 @@
     <div class="header">
         <?php while ($row = $result->fetch()): ?>
             <li>
-                <p href="article.php?id=<?= $row['id'] ?>">
+
+                <p>
+                    <?= $row['id'] ?>
+                    <strong><?= $row['title'] ?></strong>
                     <?= $row['content'] ?>
                 </p>
             </li>

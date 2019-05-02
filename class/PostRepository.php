@@ -17,7 +17,8 @@ class PostRepository {
   {
 
 
-      $response = $this->base->prepare('INSERT INTO post (content, postDate) VALUES(:content, :postDate)');
+      $response = $this->base->prepare('INSERT INTO post (title, content, postDate) VALUES(:title, :content, :postDate)');
+      $response->bindValue(':title', $post->getTitle());
       $response->bindValue(':content', $post->getContent());
       $response->bindValue(':postDate', $post->getPostDate());
 
@@ -29,8 +30,8 @@ class PostRepository {
 
   public function exists(Post $post)
  {
-     $response = $this->base->prepare('SELECT COUNT(*) FROM post WHERE content = :content');
-     $response->bindValue(':content', $post->getContent());
+     $response = $this->base->prepare('SELECT COUNT(*) FROM post WHERE title = :title');
+     $response->bindValue(':title', $post->getTitle());
      $response->execute();
 
      return (bool) $response->fetchColumn();
