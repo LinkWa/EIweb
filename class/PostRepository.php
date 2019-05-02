@@ -17,10 +17,11 @@ class PostRepository {
   {
 
 
-      $response = $this->base->prepare('INSERT INTO post (title, content, postDate) VALUES(:title, :content, :postDate)');
+      $response = $this->base->prepare('INSERT INTO post (title, content, postDate, userName) VALUES(:title, :content, :postDate, :userName)');
       $response->bindValue(':title', $post->getTitle());
       $response->bindValue(':content', $post->getContent());
       $response->bindValue(':postDate', $post->getPostDate());
+      $response->bindValue(':userName', $post->getUserName());
 
 
       $response->execute();

@@ -23,6 +23,7 @@
     $post->setTitle($_POST['title']);
     $post->setContent($_POST['content']);
     $post->setPostDate($date->format('Y-m-d H:i:s'));
+    $post->setUserName($_SESSION['name']);
 
     $postrepository = new PostRepository($base);
     $postrepository->add($post);

@@ -10,6 +10,7 @@
             <li>
 
                 <p>
+                    <div class="username"><?= $row['userName'] ?> : </div>
                     <?= $row['id'] ?>
                     <strong><?= $row['title'] ?></strong>
                     <?= $row['content'] ?>
