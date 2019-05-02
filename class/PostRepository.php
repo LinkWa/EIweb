@@ -15,17 +15,26 @@ class PostRepository {
 
   public function add(Post $post)
   {
-      $datenow = new DateTime('now');
 
-      $response = $this->base->prepare('INSERT INTO post (title, content, postDate) VALUES(:title, :content, :postDate)');
-      $response->bindValue(':title', $post->getTitle());
+
+      $response = $this->base->prepare('INSERT INTO post (content, postDate) VALUES(:content, :postDate)');
       $response->bindValue(':content', $post->getContent());
-      $response->bindValue(':postDate', $datenow->format('Y-m-d H:i:s'), PDO::PARAM_STR);
+      $response->bindValue(':postDate', $post->getPostDate());
 
 
       $response->execute();
 
-      $user->hydrate(['id' => $this->base->lastInsertId()]);
+      $post->setId($this->base->lastInsertId());
   }
+
+  public function exists(Post $post)
+ {
+     $response = $this->base->prepare('SELECT COUNT(*) FROM post WHERE content = :content');
+     $response->bindValue(':content', $post->getContent());
+     $response->execute();
+
+     return (bool) $response->fetchColumn();
+ }
+}
 
 ?>
