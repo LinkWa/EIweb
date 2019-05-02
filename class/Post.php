@@ -12,6 +12,8 @@
 
     private $postDate;
 
+    private $userName;
+
     public function __construct(array $arrayOfValues = null)
    {
        if ($arrayOfValues !== null) {
@@ -72,6 +74,16 @@
        public function setPostDate($postDate)
        {
            $this->postDate = $postDate;
+       }
+
+       public function getUserName()
+       {
+         return $this->userName;
+       }
+
+       public function setUserName($userName)
+       {
+         $this->userName = $userName;
        }
   }
 
